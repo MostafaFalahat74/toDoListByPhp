@@ -1,7 +1,7 @@
 <?php
 session_start(); // شروع جلسه
 
-require 'db.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
+require 'Database.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
 require '../models/User.php'; // از پوشه فعلی (inc/) یک سطح به عقب رفته و سپس وارد پوشه models/ شوید
 
 // ایجاد اتصال به پایگاه داده و شیء User

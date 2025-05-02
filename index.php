@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-require 'inc/db.php';
+require 'inc/Database.php';
 require 'models/Todo.php';
 $database = new Database();
 $pdo = $database->getConnection();
@@ -20,7 +20,7 @@ $tasks = $todoManager->getAllTasks();
 <html>
 <head>
     <title>To-Do List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
     <h1>To-Do List</h1>

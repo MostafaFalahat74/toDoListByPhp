@@ -1,5 +1,5 @@
 <?php
-require '../inc/db.php';
+require '../inc/Database.php';
 require '../models/Todo.php';
 $database = new Database();
 $pdo = $database->getConnection();
