@@ -1,8 +1,8 @@
 <?php
 session_start(); // شروع جلسه
 
-require 'db.php';
-require 'User.php';
+require 'db.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
+require '../models/User.php'; // از پوشه فعلی (inc/) یک سطح به عقب رفته و سپس وارد پوشه models/ شوید
 
 // ایجاد اتصال به پایگاه داده و شیء User
 $database = new Database();
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user->login($username, $password)) {
         // ورود موفقیت‌آمیز، هدایت به صفحه اصلی یا داشبورد
-        header('Location: index.php'); // شما باید 'index.php' را با صفحه اصلی خود جایگزین کنید
+        header('Location: ../index.php'); // فرض بر این است که index.php در سطح ریشه پروژه است
         exit();
     } else {
         // ورود ناموفق، تنظیم پیام خطا
