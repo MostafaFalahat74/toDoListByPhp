@@ -1,5 +1,5 @@
 <?php
-require_once 'TodoRepositoryInterface.php';
+require_once './TodoRepositoryInterface.php';
 class Todo implements TodoRepositoryInterface {
     private $pdo;
 

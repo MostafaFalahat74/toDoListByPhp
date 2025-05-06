@@ -1,7 +1,7 @@
 <?php
-// کلاس Database که Interface DatabaseConnectionInterface را پیاده‌سازی می‌کند
 require_once '../models/DatabaseInterface.php';
-class Database implements DatabaseInterface {
+class Database implements DatabaseInterface
+{
     private $host = 'localhost';
     private $dbname = 'todolists';
     private $username = 'root';
@@ -9,7 +9,8 @@ class Database implements DatabaseInterface {
     private $charset = 'utf8mb4';
     private $pdo;
 
-    public function connect(): PDO {
+    public function connect(): PDO
+    {
         if ($this->pdo === null) {
             try {
                 $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname . ";charset=" . $this->charset;

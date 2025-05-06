@@ -7,7 +7,12 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: inc/login_process.php');
     exit();
 }
+require_once './inc/Database.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
+require_once './models/User.php'; // از پوشه فعلی (inc/) یک سطح به عقب رفته و سپس وارد پوشه models/ شوید
+require_once './models/DatabaseInterface.php';
+
 $database = new Database();
+var_dump($database);exit();
 $pdo = $database->connect();
 $todoManager = new Todo($pdo);
 $tasks = $todoManager->getAllTasks();
