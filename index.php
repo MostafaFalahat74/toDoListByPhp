@@ -7,11 +7,8 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: inc/login_process.php');
     exit();
 }
-
-require 'inc/Database.php';
-require 'models/Todo.php';
 $database = new Database();
-$pdo = $database->getConnection();
+$pdo = $database->connect();
 $todoManager = new Todo($pdo);
 $tasks = $todoManager->getAllTasks();
 ?>

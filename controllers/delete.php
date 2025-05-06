@@ -1,8 +1,10 @@
 <?php
-require '../inc/Database.php';
-require '../models/Todo.php';
+require_once '../inc/Database.php';
+require_once '../models/Todo.php';
+require_once '../models/TodoRepositoryInterface.php';
+require_once '../models/DatabaseConnectionInterface.php';
 $database = new Database();
-$pdo = $database->getConnection();
+$pdo = $database->connect();
 $todoManager = new Todo($pdo);
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -19,8 +21,4 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     header('Location: index.php?error=invalid_id'); // بازگشت با پیام خطا برای ID نامعتبر
     exit();
 }
-
-// خطوط زیر باید حذف شوند
-// header('Location: index.php'); // بازگشت به صفحه اصلی
-// exit();
 ?>

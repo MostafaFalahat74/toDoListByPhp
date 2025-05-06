@@ -1,12 +1,12 @@
 <?php
 session_start(); // شروع جلسه
 
-require 'Database.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
-require '../models/User.php'; // از پوشه فعلی (inc/) یک سطح به عقب رفته و سپس وارد پوشه models/ شوید
-
+require_once 'Database.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
+require_once '../models/User.php'; // از پوشه فعلی (inc/) یک سطح به عقب رفته و سپس وارد پوشه models/ شوید
+require_once '../models/DatabaseInterface.php';
 // ایجاد اتصال به پایگاه داده و شیء User
 $database = new Database();
-$pdo = $database->getConnection();
+$pdo = $database->connect();
 $user = new User($pdo);
 
 $error = null; // متغیری برای ذخیره پیام خطا

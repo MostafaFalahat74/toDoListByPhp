@@ -1,6 +1,7 @@
 <?php
-require '../inc/Database.php';
-require '../models/Todo.php';
+require_once '../inc/Database.php';
+require_once '../models/Todo.php';
+require_once '../models/TodoRepositoryInterface.php';
 $database = new Database();
 $pdo = $database->getConnection();
 $todoManager = new Todo($pdo);
