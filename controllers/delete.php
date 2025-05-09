@@ -1,8 +1,9 @@
 <?php
-require_once '../inc/Database.php';
-require_once '../models/Todo.php';
-require_once '../models/TodoRepositoryInterface.php';
-require_once '../models/DatabaseConnectionInterface.php';
+namespace Controllers;
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Models\Todo;
+use Inc\Database;
 $database = new Database();
 $pdo = $database->connect();
 $todoManager = new Todo($pdo);

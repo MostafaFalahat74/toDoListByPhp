@@ -1,4 +1,5 @@
 <?php
+namespace Models;
 interface TodoRepositoryInterface {
     public function getTask(int $id): ?array;
     public function getAllTasks(): array;

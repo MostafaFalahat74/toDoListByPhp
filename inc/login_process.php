@@ -1,10 +1,13 @@
 <?php
+
+namespace Inc;
+require_once __DIR__ . '/../vendor/autoload.php';
+
 session_start(); // شروع جلسه
 
-require_once './Database.php'; // فایل db.php در همین پوشه (inc/) قرار دارد
-require_once '../models/User.php'; // از پوشه فعلی (inc/) یک سطح به عقب رفته و سپس وارد پوشه models/ شوید
-require_once '../models/DatabaseInterface.php';
-// ایجاد اتصال به پایگاه داده و شیء User
+
+use Models\User;
+
 $database = new Database();
 $pdo = $database->connect();
 $user = new User($pdo);

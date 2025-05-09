@@ -1,6 +1,7 @@
 <?php
-// Interface برای اتصال به پایگاه داده
+namespace Models;
+
 interface DatabaseInterface {
-    public function connect(): PDO;
+    public function connect(): \PDO;
 }
 ?>

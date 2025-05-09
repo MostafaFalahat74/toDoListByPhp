@@ -1,9 +1,12 @@
 <?php
-require_once '../inc/Database.php';
-require_once '../models/Todo.php';
-require_once '../models/TodoRepositoryInterface.php';
+namespace Controllers;
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Inc\Database;
+use Models\Todo;
+
 $database = new Database();
-$pdo = $database->getConnection();
+$pdo = $database->connect();
 $todoManager = new Todo($pdo);
 
 if (isset($_POST['task']) && !empty($_POST['task'])) {

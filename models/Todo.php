@@ -1,9 +1,11 @@
 <?php
-require_once './TodoRepositoryInterface.php';
+namespace Models;
+use Models\TodoRepositoryInterface;
+use \PDO;
 class Todo implements TodoRepositoryInterface {
-    private $pdo;
+    private  $pdo;
 
-    public function __construct(PDO $pdo) {
+    public function __construct(\PDO $pdo) {
         $this->pdo = $pdo;
     }
     public function getTask(int $id): ?array {

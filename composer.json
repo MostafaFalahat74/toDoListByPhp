@@ -1,0 +1,17 @@
+{
+    "name": "mosi/to-do-list",
+    "description": "discription",
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "inc/",
+            "Models\\": "models/",
+            "Controllers\\": "controllers/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mostafa"
+        }
+    ],
+    "require": {}
+}
