@@ -1,26 +1,27 @@
 <?php
-namespace Controllers;
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Models\Todo;
 use Inc\Database;
+use Models\Todo;
 
-$database = new Database();
-$pdo = $database->connect();
-$todoManager = new Todo($pdo);
-var_dump($todoManager);exit();
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = (int)$_GET['id']; // تبدیل به عدد صحیح برای اطمینان
+session_start();
 
-    if ($todoManager->completeTask($id)) {
-        header('Location: ../index.php?success=task_added'); // بازگشت با پیام موفقیت
-        exit();
-    } else {
-        header('Location: index.php?error=complete_task_failed'); // بازگشت با پیام خطا در صورت عدم موفقیت در تکمیل
-        exit();
-    }
-} else {
-    header('Location: index.php?error=invalid_id'); // بازگشت با پیام خطا برای ID نامعتبر
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../inc/login_process.php');
     exit();
 }
-?>
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['completed'])) {
+    $id = intval($_POST['id']);
+    $completed = intval($_POST['completed']) ? 1 : 0;
+
+
+    $database = new Database();
+    $pdo = $database->connect();
+    $todo = new Todo($pdo);
+
+    $todo->updateTaskStatus($id, $completed);
+}
+
+header('Location: ../index.php');
+exit();

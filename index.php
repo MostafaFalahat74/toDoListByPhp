@@ -34,7 +34,12 @@ $tasks = $todoManager->getAllTasks();
     <?php else: ?>
         <?php foreach ($tasks as $task): ?>
             <li>
-                <input type="checkbox" <?php if ($task['is_completed']): ?>checked<?php endif; ?> onclick="window.location='controllers/complete.php?id=<?php echo $task['id']; ?>'">
+                <form method="post" action="controllers/complete.php" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
+                    <input type="hidden" name="completed" value="<?php echo $task['is_completed'] ? 0 : 1; ?>">
+                    <input type="checkbox" onchange="this.form.submit()" <?php if ($task['is_completed']): ?>checked<?php endif; ?>>
+                </form>
+
                 <span class="<?php if ($task['is_completed']): ?>completed<?php endif; ?>"><?php echo htmlspecialchars($task['task']); ?></span>
                 <div class="actions">
                     <a href="controllers/delete.php?id=<?php echo $task['id']; ?>" class="delete">حذف</a>

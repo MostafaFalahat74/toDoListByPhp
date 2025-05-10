@@ -36,5 +36,13 @@ class Todo implements TodoRepositoryInterface {
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+    public function updateTaskStatus(int $id, bool $status): bool
+    {
+        $stmt = $this->pdo->prepare("UPDATE todos SET is_completed = :status WHERE id = :id");
+        return $stmt->execute([
+            ':status' => $status ? 1 : 0,
+            ':id' => $id
+        ]);
+    }
 }
 ?>
