@@ -8,7 +8,7 @@ use Inc\Database;
 $database = new Database();
 $pdo = $database->connect();
 $todoManager = new Todo($pdo);
-
+var_dump($todoManager);exit();
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = (int)$_GET['id']; // تبدیل به عدد صحیح برای اطمینان
 

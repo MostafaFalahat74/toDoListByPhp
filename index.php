@@ -13,10 +13,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-
-
 $database = new Database();
-//var_dump($database);exit();
 $pdo = $database->connect();
 $todoManager = new Todo($pdo);
 $tasks = $todoManager->getAllTasks();
@@ -26,7 +23,7 @@ $tasks = $todoManager->getAllTasks();
 <html>
 <head>
     <title>To-Do List</title>
-    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="public/Style.css">
 </head>
 <body>
 <h1>To-Do List</h1>
