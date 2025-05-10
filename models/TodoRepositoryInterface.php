@@ -7,7 +7,5 @@ interface TodoRepositoryInterface {
     public function completeTask(int $id): bool;
     public function deleteTask(int $id): bool;
     public function updateTaskStatus(int $id, bool $status): bool;
-
-
 }
 ?>

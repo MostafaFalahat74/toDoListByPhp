@@ -10,6 +10,10 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: ../inc/login_process.php');
     exit();
 }
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('درخواست نامعتبر (CSRF token).');
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['completed'])) {
     $id = intval($_POST['id']);

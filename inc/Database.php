@@ -1,6 +1,5 @@
 <?php
 namespace Inc;
-//require_once './models/DatabaseInterface.php';
 use Models\DatabaseInterface;
 class Database implements DatabaseInterface
 {

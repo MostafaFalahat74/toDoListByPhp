@@ -6,6 +6,9 @@ use Models\User;
 use Models\DatabaseInterface;
 use Models\Todo;
 session_start(); // شروع جلسه در ابتدای فایل
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 if (!isset($_SESSION['user_id'])) {
     // اگر کاربر لاگین نکرده است، به صفحه لاگین ریدایرکت شود
@@ -37,6 +40,7 @@ $tasks = $todoManager->getAllTasks();
                 <form method="post" action="controllers/complete.php" style="display:inline;">
                     <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                     <input type="hidden" name="completed" value="<?php echo $task['is_completed'] ? 0 : 1; ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <input type="checkbox" onchange="this.form.submit()" <?php if ($task['is_completed']): ?>checked<?php endif; ?>>
                 </form>
 
@@ -51,6 +55,7 @@ $tasks = $todoManager->getAllTasks();
 
 <form action="controllers/add.php" method="post">
     <input type="text" name="task" placeholder="افزودن وظیفه جدید" required>
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     <button type="submit">افزودن</button>
 </form>
 </body>

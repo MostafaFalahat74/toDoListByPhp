@@ -1,9 +1,13 @@
 <?php
 namespace Controllers;
+session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Inc\Database;
 use Models\Todo;
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die('درخواست نامعتبر (CSRF token).');
+}
 
 $database = new Database();
 $pdo = $database->connect();
