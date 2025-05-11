@@ -1,67 +1,73 @@
-
+/* استایل‌های کلی */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
     display: flex;
-    align-items: center; /* وسط‌چین عمودی */
-    justify-content: center; /* وسط‌چین افقی */
-    background-color: #f0f2f5;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
     direction: rtl;
-    margin: 0; /* حذف margin پیش‌فرض body */
-    min-height: 100vh; /* همچنان نگه می‌داریم تا در صفحه‌های با محتوای کم، پس‌زمینه کل صفحه رو بگیره */
+    box-sizing: border-box;
+    flex-direction: column; /* برای صفحه لیست کارها */
+    padding: 20px; /* برای صفحه لیست کارها */
 }
 
+/* استایل‌های صفحه ورود */
 .login-container {
     background-color: #fff;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 400px; /* عرض مناسب برای فرم ورود */
+    width: 400px;
     text-align: center;
+    margin-top: auto; /* برای وسط قرار گرفتن در صفحه ورود */
+    margin-bottom: auto; /* برای وسط قرار گرفتن در صفحه ورود */
 }
 
-h1 {
+.login-container h1 {
     color: #333;
     margin-bottom: 30px;
 }
 
-.error-message {
-    color: #d32f2f; /* رنگ قرمز برای پیام خطا */
-    background-color: #ffebee; /* پس‌زمینه روشن برای پیام خطا */
+.login-container .error-message {
+    color: #d32f2f;
+    background-color: #ffebee;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
 }
 
-.form-group {
+.login-container .form-group {
     margin-bottom: 20px;
-    text-align: right; /* راست‌چین کردن labelها */
+    text-align: right;
 }
 
-label {
+.login-container label {
     display: block;
     margin-bottom: 8px;
     color: #555;
     font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-container input[type="text"],
+.login-container input[type="password"] {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: calc(100% - 24px); /* محاسبه عرض با در نظر گرفتن padding و border */
+    width: calc(100% - 24px);
     box-sizing: border-box;
     font-size: 16px;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: #007bff; /* رنگ هنگام فوکوس */
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
 }
 
-button[type="submit"] {
+.login-container button[type="submit"] {
     background-color: #007bff;
     color: white;
     padding: 14px 20px;
@@ -73,35 +79,153 @@ button[type="submit"] {
     width: 100%;
 }
 
-button[type="submit"]:hover {
+.login-container button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* استایل‌های بیشتر (اختیاری) */
-body::before { /* یک نوار رنگی در بالا */
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: #007bff;
+/* استایل‌های صفحه لیست کارها */
+h1 {
+    color: #3f51b5; /* رنگ اصلی */
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-/* طراحی واکنش‌گرا */
-@media (max-width: 600px) {
+ul {
+    list-style: none;
+    padding: 0;
+    width: 80%; /* عرض لیست */
+    max-width: 600px; /* حداکثر عرض لیست */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* فاصله بین چک باکس، متن و دکمه‌ها */
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+input[type="checkbox"] {
+    margin-left: 15px; /* فاصله از متن */
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+    border: 2px solid #3f51b5;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #777;
+}
+
+.actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff; /* رنگ لینک‌ها */
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.actions a:hover {
+    color: #0056b3;
+}
+
+.actions a.delete {
+    color: #dc3545; /* رنگ حذف */
+}
+
+.actions a.delete:hover {
+    color: #c82333;
+}
+
+form[action="controllers/add.php"] {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    gap: 10px; /* فاصله بین ورودی و دکمه */
+}
+
+form[action="controllers/add.php"] input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1; /* اجازه بزرگ شدن برای پر کردن فضا */
+    font-size: 1rem;
+}
+
+form[action="controllers/add.php"] input[type="text"]:focus {
+    outline: none;
+    border-color: #3f51b5;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+}
+
+form[action="controllers/add.php"] button {
+    padding: 12px 15px;
+    background-color: #28a745; /* رنگ دکمه افزودن */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form[action="controllers/add.php"] button:hover {
+    background-color: #1e7e34;
+}
+
+/* واکنش‌گرا برای صفحه‌های کوچکتر */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
     .login-container {
-        width: 90%;
+        width: 95%;
         padding: 30px;
     }
+
     h1 {
-        font-size: 24px;
+        font-size: 2rem;
         margin-bottom: 20px;
     }
-    input[type="text"],
-    input[type="password"],
-    button[type="submit"] {
-        font-size: 14px;
+
+    ul,
+    form[action="controllers/add.php"] {
+        width: 95%;
+    }
+
+    li {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+
+    .actions a {
+        font-size: 0.8rem;
+        margin-right: 5px;
+    }
+
+    form[action="controllers/add.php"] input[type="text"],
+    form[action="controllers/add.php"] button {
+        font-size: 0.9rem;
         padding: 10px;
     }
 }
