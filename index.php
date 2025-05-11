@@ -53,10 +53,6 @@ $tasks = $todoManager->getAllTasks();
     <?php endif; ?>
 </ul>
 
-<form action="controllers/add.php" method="post">
-    <input type="text" name="task" placeholder="افزودن وظیفه جدید" required>
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-    <button type="submit">افزودن</button>
-</form>
+<a href="./resources/Add_view.php" class="go_to_add_page">افزودن</a>
 </body>
 </html>

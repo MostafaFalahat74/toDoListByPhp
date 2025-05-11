@@ -5,7 +5,8 @@
         "psr-4": {
             "Inc\\": "inc/",
             "Models\\": "models/",
-            "Controllers\\": "controllers/"
+            "Controllers\\": "controllers/",
+            "Resources\\": "resources/"
         }
     },
     "authors": [
