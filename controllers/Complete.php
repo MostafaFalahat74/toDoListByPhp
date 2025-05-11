@@ -1,17 +1,14 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once  __DIR__.'/../config/Security.php';
 
 use Inc\Database;
 use Models\Todo;
 
-session_start();
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../inc/login_process.php');
     exit();
-}
-if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-    die('درخواست نامعتبر (CSRF token).');
 }
 
 

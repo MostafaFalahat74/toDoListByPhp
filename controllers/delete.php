@@ -1,7 +1,10 @@
 <?php
 namespace Controllers;
 require_once __DIR__ . '/../vendor/autoload.php';
+//require_once  __DIR__.'/../config/Security.php';
+echo($_SESSION['csrf_token']);
 
+exit();
 use Models\Todo;
 use Inc\Database;
 $database = new Database();

@@ -37,7 +37,7 @@ $tasks = $todoManager->getAllTasks();
     <?php else: ?>
         <?php foreach ($tasks as $task): ?>
             <li>
-                <form method="post" action="controllers/complete.php" style="display:inline;">
+                <form method="post" action="controllers/Complete.php" style="display:inline;">
                     <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                     <input type="hidden" name="completed" value="<?php echo $task['is_completed'] ? 0 : 1; ?>">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
