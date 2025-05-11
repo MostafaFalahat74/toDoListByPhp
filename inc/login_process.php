@@ -34,24 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>ورود</title>
+    <link rel="stylesheet" href="../public/Style.css">
 </head>
 <body>
-    <h1>ورود</h1>
+<div class="login-container"> <h1>ورود</h1>
     <?php if ($error): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
+        <p class="error-message"><?php echo $error; ?></p>
     <?php endif; ?>
     <form method="post">
-        <div>
+        <div class="form-group">
             <label for="username">نام کاربری:</label>
             <input type="text" id="username" name="username" required>
         </div>
-        <br>
-        <div>
+        <div class="form-group">
             <label for="password">رمز عبور:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <br>
         <button type="submit">ورود</button>
     </form>
-</body>
+</div> </body>
 </html>
