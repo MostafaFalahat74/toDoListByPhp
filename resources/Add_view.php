@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($task)) {
         $todoManager->addTask($task); // مطمئن شو این متد در کلاس Todo هست
     }
-    header("Location: index.php");
+    header('Location: ../resources/Home.php');
     exit();
 }
 ?>
@@ -35,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="add-task-container">
     <h1>افزودن وظیفه جدید</h1>
-    <form action="add_task.php" method="post" class="add-task-form">
+    <form action="../controllers/Add.php" method="post" class="add-task-form">
         <input type="text" name="task" placeholder="افزودن وظیفه جدید" required>
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <button type="submit">افزودن</button>
     </form>
-    <a href="../index.php" class="back-link">بازگشت به لیست</a>
+    <a href="./Home.php" class="back-link">بازگشت به لیست</a>
 </div>
 </body>
 </html>

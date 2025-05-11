@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user->login($username, $password)) {
         // ورود موفقیت‌آمیز، هدایت به صفحه اصلی یا داشبورد
-        header('Location: ../index.php'); // فرض بر این است که index.php در سطح ریشه پروژه است
+        header('Location: ../resources/Home.php'); // فرض بر این است که index.php در سطح ریشه پروژه است
         exit();
     } else {
         // ورود ناموفق، تنظیم پیام خطا

@@ -24,5 +24,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['complet
     $todo->updateTaskStatus($id, $completed);
 }
 
-header('Location: ../index.php');
+header('Location: ../resources/Home.php');
 exit();
