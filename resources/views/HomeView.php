@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Inc\Database;
 use Models\User;
@@ -12,7 +12,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 if (!isset($_SESSION['user_id'])) {
     // اگر کاربر لاگین نکرده است، به صفحه لاگین ریدایرکت شود
-    header('Location: inc/login_process.php');
+    header('Location: resources/views/loginView.php');
     exit();
 }
 
@@ -26,7 +26,7 @@ $tasks = $todoManager->getAllTasks();
 <html>
 <head>
     <title>To-Do List</title>
-    <link rel="stylesheet" href="../public/Style.css">
+    <link rel="stylesheet" href="../../public/Style.css">
 </head>
 <body>
 <h1>To-Do List</h1>
@@ -37,7 +37,7 @@ $tasks = $todoManager->getAllTasks();
     <?php else: ?>
         <?php foreach ($tasks as $task): ?>
             <li>
-                <form method="post" action="../controllers/Complete.php" style="display:inline;">
+                <form method="post" action="../../controllers/CompleteController.php" style="display:inline;">
                     <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                     <input type="hidden" name="completed" value="<?php echo $task['is_completed'] ? 0 : 1; ?>">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
@@ -46,13 +46,13 @@ $tasks = $todoManager->getAllTasks();
 
                 <span class="<?php if ($task['is_completed']): ?>completed<?php endif; ?>"><?php echo htmlspecialchars($task['task']); ?></span>
                 <div class="actions">
-                    <a href="../controllers/delete.php?id=<?php echo $task['id']; ?>" class="delete">حذف</a>
+                    <a href="../../controllers/DeleteController.php?id=<?php echo $task['id']; ?>" class="delete">حذف</a>
                 </div>
             </li>
         <?php endforeach; ?>
     <?php endif; ?>
 </ul>
 
-<a href="./Add_view.php" class="go_to_add_page">افزودن</a>
+<a href="AddView.php" class="go_to_add_page">افزودن</a>
 </body>
 </html>

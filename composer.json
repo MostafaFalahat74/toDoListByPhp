@@ -6,7 +6,8 @@
             "Inc\\": "inc/",
             "Models\\": "models/",
             "Controllers\\": "controllers/",
-            "Resources\\": "resources/"
+            "Resources\\": "resources/",
+            "Views\\": "resources/views/"
         }
     },
     "authors": [

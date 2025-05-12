@@ -15,14 +15,14 @@ if (isset($_POST['task']) && !empty($_POST['task'])) {
     $task = $_POST['task'];
 
     if ($todoManager->addTask($task)) {
-        header('Location: ../resources/Home.php?success=task_added'); // بازگشت به صفحه اصلی با پیام موفقیت
+        header('Location: ../resources/views/HomeView.php?success=task_added'); // بازگشت به صفحه اصلی با پیام موفقیت
         exit();
     } else {
-        header('Location: ../resources/Home.php?error=add_task_failed'); // بازگشت با پیام خطا در صورت عدم موفقیت در افزودن
+        header('Location: ../resources/views/HomeView.php?error=add_task_failed'); // بازگشت با پیام خطا در صورت عدم موفقیت در افزودن
         exit();
     }
 } else {
-    header('Location: ../resources/Home.php?error=empty_task'); // بازگشت با پیام خطا
+    header('Location: ../resources/views/HomeView.php?error=empty_task'); // بازگشت با پیام خطا
     exit();
 }
 ?>

@@ -42,5 +42,4 @@ class User
         unset($_SESSION['user_id']); // حذف متغیر user_id (اختیاری)
     }
 }
-
 ?>

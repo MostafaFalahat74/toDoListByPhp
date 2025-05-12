@@ -7,7 +7,7 @@ use Models\Todo;
 
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../inc/login_process.php');
+    header('Location: ../resources/views/login_process.php');
     exit();
 }
 
@@ -24,5 +24,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['complet
     $todo->updateTaskStatus($id, $completed);
 }
 
-header('Location: ../resources/Home.php');
+header('Location: ../resources/views/HomeView.php');
 exit();
