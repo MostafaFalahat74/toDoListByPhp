@@ -18,8 +18,10 @@ switch ($request_uri[0]) {
     case '/toDoList/add/':
         require 'resources/Add_view.php';
         break;
+    case '/toDoList/index.php':
+        require 'resources/Home.php';
+        break;
     default:
-        echo ($request_uri[0]);
         header('HTTP/1.0 404 Not Found');
         break;
 }
