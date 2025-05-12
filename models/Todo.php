@@ -1,8 +1,8 @@
 <?php
 namespace Models;
-use Models\TodoRepositoryInterface;
+use Models\Interfaces\TodoInterface;
 use \PDO;
-class Todo implements TodoRepositoryInterface {
+class Todo implements TodoInterface {
     private  $pdo;
 
     public function __construct(\PDO $pdo) {

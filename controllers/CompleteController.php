@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once  __DIR__.'/../config/Security.php';
 
-use Inc\Database;
+use Models\Database;
 use Models\Todo;
 
 

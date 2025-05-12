@@ -1,6 +1,7 @@
 <?php
 namespace Models;
-class User
+use Models\Interfaces\UserInterface;
+class User implements UserInterface
 {
     private $pdo;
 

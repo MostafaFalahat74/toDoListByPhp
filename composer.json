@@ -3,11 +3,12 @@
     "description": "discription",
     "autoload": {
         "psr-4": {
-            "Inc\\": "inc/",
             "Models\\": "models/",
             "Controllers\\": "controllers/",
             "Resources\\": "resources/",
-            "Views\\": "resources/views/"
+            "Views\\": "resources/views/",
+            "Models\\": "models/",
+            "Interfaces\\": "models/Interfaces/"
         }
     },
     "authors": [

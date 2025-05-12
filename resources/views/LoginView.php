@@ -7,7 +7,7 @@ session_start(); // شروع جلسه
 
 
 use Models\User;
-use Inc\Database;
+use Models\Database;
 
 $database = new Database();
 $pdo = $database->connect();

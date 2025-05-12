@@ -1,6 +1,6 @@
 <?php
-namespace Inc;
-use Models\DatabaseInterface;
+namespace Models;
+use Models\Interfaces\DatabaseInterface;
 class Database implements DatabaseInterface
 {
     private $host = 'localhost';

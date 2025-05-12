@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Inc\Database;
-use Models\User;
+use Models\Database;
 use Models\DatabaseInterface;
+use Models\User;
 use Models\Todo;
 session_start(); // شروع جلسه در ابتدای فایل
 if (empty($_SESSION['csrf_token'])) {

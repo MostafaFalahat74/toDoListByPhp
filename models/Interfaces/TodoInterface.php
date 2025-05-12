@@ -1,6 +1,6 @@
 <?php
-namespace Models;
-interface TodoRepositoryInterface {
+namespace Models\Interfaces;
+interface TodoInterface {
     public function getTask(int $id): ?array;
     public function getAllTasks(): array;
     public function addTask(string $task): bool;
