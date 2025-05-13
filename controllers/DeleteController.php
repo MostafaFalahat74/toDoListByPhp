@@ -1,6 +1,6 @@
 <?php
 namespace Controllers;
-require_once __DIR__ . '/../vendor/autoload.php';
+//require_once __DIR__ . '/../vendor/autoload.php';
 session_start();
 use Models\Todo;
 use Models\Database;
