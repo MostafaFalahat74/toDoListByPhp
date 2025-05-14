@@ -6,6 +6,9 @@ require_once  __DIR__.'/../config/Security.php';
 use Models\Database;
 use Models\Todo;
 
+require_once __DIR__ . '/../models/Database.php';
+require_once __DIR__ . '/../models/Todo.php';
+
 
 $database = new Database();
 $pdo = $database->connect();

@@ -1,6 +1,7 @@
 <?php
 namespace Models;
 use Models\Interfaces\DatabaseInterface;
+require_once __DIR__ . '/../models/Interfaces/DatabaseInterface.php';
 class Database implements DatabaseInterface
 {
     private $host = 'localhost';

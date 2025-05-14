@@ -1,6 +1,8 @@
 <?php
 namespace Models;
 use Models\Interfaces\TodoInterface;
+require_once __DIR__ . '/../models/Interfaces/TodoInterface.php';
+
 use \PDO;
 class Todo implements TodoInterface {
     private  $pdo;

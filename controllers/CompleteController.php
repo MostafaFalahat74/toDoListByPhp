@@ -5,6 +5,8 @@ require_once  __DIR__.'/../config/Security.php';
 use Models\Database;
 use Models\Todo;
 
+require_once __DIR__ . '/../models/Database.php';
+require_once __DIR__ . '/../models/Todo.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../resources/views/login_process.php');

@@ -1,7 +1,10 @@
 <?php
 //require_once __DIR__ . '/../../vendor/autoload.php';
-use Inc\Database;
+use Models\Database;
 use Models\Todo;
+
+require_once __DIR__ . '/../../models/Todo.php';
+require_once __DIR__ . '/../../models/Database.php';
 
 session_start();
 if (!isset($_SESSION['user_id'])) {
