@@ -1,7 +1,6 @@
 <?php
 
 namespace resources\views;
-//require_once __DIR__ . '/../../vendor/autoload.php';
 
 session_start(); // شروع جلسه
 
