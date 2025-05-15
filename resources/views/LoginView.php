@@ -2,8 +2,11 @@
 
 namespace resources\views;
 
-session_start(); // شروع جلسه
-
+session_start(); 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf = $_SESSION['csrf_token'];
 use Models\User;
 use Models\Database;
 require_once __DIR__ . '/../../models/User.php';
@@ -21,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user->login($username, $password)) {
         // ورود موفقیت‌آمیز، هدایت به صفحه اصلی یا داشبورد
-        header('Location: ./HomeView.php'); // فرض بر این است که index.php در سطح ریشه پروژه است
+        header('Location: /toDoList/');
         exit();
     } else {
         // ورود ناموفق، تنظیم پیام خطا
@@ -35,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>ورود</title>
-    <link rel="stylesheet" href="../../public/Style.css">
+    <link rel="stylesheet" href="/toDoList/public/Style.css">
 </head>
 <body>
 <div class="login-container"> <h1>ورود</h1>
     <?php if ($error): ?>
         <p class="error-message"><?php echo $error; ?></p>
     <?php endif; ?>
-    <form method="post">
+    <form method="post" action="/toDoList/login/">
         <div class="form-group">
             <label for="username">نام کاربری:</label>
             <input type="text" id="username" name="username" required>
@@ -51,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="password">رمز عبور:</label>
             <input type="password" id="password" name="password" required>
         </div>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <button type="submit">ورود</button>
     </form>
 </div> </body>

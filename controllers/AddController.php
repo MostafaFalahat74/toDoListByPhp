@@ -1,44 +1,40 @@
 <?php
 namespace Controllers;
 
-require_once __DIR__.'/../config/Security.php';
-require_once __DIR__ . '/../models/Database.php';
-require_once __DIR__ . '/../models/Todo.php';
 use Models\Database;
 use Models\Todo;
 
 class AddController {
-    private $database;
-    private $pdo;
     private $todoManager;
 
     public function __construct() {
-        session_start();
-        $this->database = new Database();
-        $this->pdo = $this->database->connect();
-        $this->todoManager = new Todo($this->pdo);
+        $database = new Database();
+        $this->todoManager = new Todo($database->connect());
     }
 
-    public function addTaskAction() {
-        if (isset($_POST['task']) && !empty($_POST['task'])) {
-            $task = $_POST['task'];
+    public function index() {
+        // نمایش فرم افزودن وظیفه
+        require __DIR__ . '/../resources/views/AddView.php';
+    }
 
-            if ($this->todoManager->addTask($task)) {
-                header('Location: ../resources/views/HomeView.php?success=task_added'); // بازگشت به صفحه اصلی با پیام موفقیت
-                exit();
+    public function store() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $task = trim($_POST['task']);
+            if (!empty($task)) {
+                if ($this->todoManager->addTask($task)) {
+                    header('Location: /toDoList/?success=task_added');
+                    exit();
+                } else {
+                    header('Location: /toDoList/add/?error=add_task_failed');
+                    exit();
+                }
             } else {
-                header('Location: ../resources/views/HomeView.php?error=add_task_failed'); // بازگشت با پیام خطا در صورت عدم موفقیت در افزودن
+                header('Location: /toDoList/add/?error=empty_task');
                 exit();
             }
         } else {
-            header('Location: ../resources/views/HomeView.php?error=empty_task'); // بازگشت با پیام خطا
+            header('Location: /toDoList/');
             exit();
         }
     }
 }
-
-// برای استفاده از کنترلر و فراخوانی متد
-$controller = new AddController();
-$controller->addTaskAction();
-
-?>

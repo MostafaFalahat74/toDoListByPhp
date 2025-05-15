@@ -1,44 +1,30 @@
 <?php
 namespace Controllers;
 
-use Models\Todo;
 use Models\Database;
-
-require_once __DIR__ . '/../models/Todo.php';
-require_once __DIR__ . '/../models/Database.php';
+use Models\Todo;
 
 class DeleteController {
-    private $database;
-    private $pdo;
     private $todoManager;
 
     public function __construct() {
-        session_start();
-        $this->database = new Database();
-        $this->pdo = $this->database->connect();
-        $this->todoManager = new Todo($this->pdo);
+        $database = new Database();
+        $this->todoManager = new Todo($database->connect());
     }
 
-    public function deleteTaskAction() {
+    public function destroy() {
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-            $id = (int)$_GET['id']; // تبدیل به عدد صحیح برای اطمینان
-
+            $id = (int)$_GET['id'];
             if ($this->todoManager->deleteTask($id)) {
-                header('Location: ../resources/views/HomeView.php?success=task_deleted'); // بازگشت با پیام موفقیت (اصلاح پیام)
+                header('Location: /toDoList/?success=task_deleted');
                 exit();
             } else {
-                header('Location: ../resources/views/HomeView.php?error=delete_task_failed'); // بازگشت با پیام خطا در صورت عدم موفقیت در حذف
+                header('Location: /toDoList/?error=delete_task_failed');
                 exit();
             }
         } else {
-            header('Location: ../resources/views/HomeView.php?error=invalid_id'); // بازگشت با پیام خطا برای ID نامعتبر
+            header('Location: /toDoList/?error=invalid_id');
             exit();
         }
     }
 }
-
-// برای استفاده از کنترلر و فراخوانی متد
-$controller = new DeleteController();
-$controller->deleteTaskAction();
-
-?>
