@@ -1,6 +1,5 @@
 <?php
 namespace Models;
-
 use Models\Interfaces\UserInterface;
 require_once __DIR__ . '/../models/Interfaces/UserInterface.php';
 
