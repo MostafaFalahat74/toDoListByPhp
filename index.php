@@ -3,17 +3,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? ''))) {
     die('درخواست نامعتبر (CSRF token).');
 }
-
-require_once  __DIR__ . '/models/Database.php';
-require_once  __DIR__ . '/models/Interfaces/DatabaseInterface.php';
-require_once  __DIR__ . '/models/Interfaces/TodoInterface.php';
-require_once  __DIR__ . '/models/Interfaces/UserInterface.php';
-require_once  __DIR__ . '/models/Todo.php';
-require_once  __DIR__ . '/models/User.php';
-require_once  __DIR__ . '/controllers/HomeController.php';
-require_once  __DIR__ . '/controllers/AddController.php';
-require_once  __DIR__ . '/controllers/CompleteController.php';
-require_once  __DIR__ . '/controllers/DeleteController.php';
+ require __DIR__ . '/vendor/autoload.php';
 
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 $path = $request_uri[0];

@@ -7,7 +7,6 @@
             "Controllers\\": "controllers/",
             "Resources\\": "resources/",
             "Views\\": "resources/views/",
-            "Models\\": "models/",
             "Interfaces\\": "models/Interfaces/"
         }
     },
