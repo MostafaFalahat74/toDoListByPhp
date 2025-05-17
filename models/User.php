@@ -1,15 +1,19 @@
 <?php
 namespace Models;
 use Models\Interfaces\UserInterface;
+use Models\Interfaces\DatabaseInterface;
 require_once __DIR__ . '/../models/Interfaces/UserInterface.php';
+require_once __DIR__ . '/../models/Interfaces/DatabaseInterface.php';
 
 class User implements UserInterface
 {
     private $pdo;
+    private $database; // اضافه کردن وابستگی به DatabaseInterface
 
-    public function __construct(\PDO $pdo)
+    public function __construct(DatabaseInterface $database)
     {
-        $this->pdo = $pdo;
+        $this->database = $database;
+        $this->pdo = $this->database->connect(); // دریافت اتصال PDO از طریق اینترفیس
     }
 
     public function login(string $username, string $password): bool

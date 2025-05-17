@@ -17,7 +17,7 @@ switch ($path) {
     case '/toDoList/login/':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $database = new Models\Database();
-            $userModel = new Models\User($database->connect());
+            $userModel = new Models\User($database);
             if ($userModel->login($_POST['username'] ?? '', $_POST['password'] ?? '')) {
                 header('Location: /toDoList/');
                 exit();

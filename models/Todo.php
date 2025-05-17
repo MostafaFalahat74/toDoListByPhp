@@ -1,14 +1,19 @@
 <?php
 namespace Models;
 use Models\Interfaces\TodoInterface;
+use Models\Interfaces\DatabaseInterface;
 require_once __DIR__ . '/../models/Interfaces/TodoInterface.php';
+require_once __DIR__ . '/../models/Interfaces/DatabaseInterface.php';
 
 use \PDO;
 class Todo implements TodoInterface {
     private  $pdo;
+    private $database; 
 
-    public function __construct(\PDO $pdo) {
-        $this->pdo = $pdo;
+    public function __construct(DatabaseInterface $database)
+    {
+        $this->database = $database;
+        $this->pdo = $this->database->connect(); 
     }
     public function getTask(int $id): ?array {
         $stmt = $this->pdo->prepare("SELECT * FROM todos WHERE id = :id");

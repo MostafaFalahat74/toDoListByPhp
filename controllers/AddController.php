@@ -9,7 +9,7 @@ class AddController {
 
     public function __construct() {
         $database = new Database();
-        $this->todoManager = new Todo($database->connect());
+        $this->todoManager = new Todo($database);
     }
 
     public function index() {
