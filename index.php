@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (!isset($_POST['csrf_token']) || $_
     die('درخواست نامعتبر (CSRF token).');
 }
  require __DIR__ . '/vendor/autoload.php';
+ use Helpers\RedirectHelper;
 
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 $path = $request_uri[0];
@@ -18,15 +19,13 @@ switch ($path) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $database = new Models\Database();
             $userModel = new Models\User($database);
-            if ($userModel->login($_POST['username'] ?? '', $_POST['password'] ?? '')) {
-                header('Location: /toDoList/');
-                exit();
-            } else {
-                require __DIR__ . '/resources/views/LoginView.php';
-            }
-        } else {
+            if ($userModel->login($_POST['username'] ?? '', $_POST['password'] ?? '')) 
+                RedirectHelper::redirect('/toDoList/');
+             else 
+                require __DIR__ . '/resources/views/LoginView.php';         
+        } else 
             require __DIR__ . '/resources/views/LoginView.php';
-        }
+        
         break;
     case '/toDoList/add/':
         $controller = new Controllers\AddController();

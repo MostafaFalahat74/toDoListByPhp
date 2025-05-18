@@ -9,28 +9,23 @@ if (empty($_SESSION['csrf_token'])) {
 $csrf = $_SESSION['csrf_token'];
 use Models\User;
 use Models\Database;
+use Helpers\RedirectHelper;
 require_once __DIR__ . '/../../models/User.php';
 require_once __DIR__ . '/../../models/Database.php';
 
 $database = new Database();
 $user = new User($database);
-
-$error = null; // متغیری برای ذخیره پیام خطا
+$error = null; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    if ($user->login($username, $password)) {
-        // ورود موفقیت‌آمیز، هدایت به صفحه اصلی یا داشبورد
-        header('Location: /toDoList/');
-        exit();
-    } else {
-        // ورود ناموفق، تنظیم پیام خطا
-        $error = 'نام کاربری یا رمز عبور اشتباه است.';
-    }
+    if ($user->login($username, $password)) 
+        RedirectHelper::redirect('/toDoList/');
+    else 
+        $error = 'نام کاربری یا رمز عبور اشتباه است.'; 
 }
-
 ?>
 
 <!DOCTYPE html>

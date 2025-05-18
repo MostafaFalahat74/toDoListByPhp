@@ -11,7 +11,7 @@ class Database implements DatabaseInterface
     private $charset = 'utf8mb4';
     private $pdo;
 
-    public function connect(): \PDO // ← حتماً با backslash
+    public function connect(): \PDO 
     {
         if ($this->pdo === null) {
             try {
