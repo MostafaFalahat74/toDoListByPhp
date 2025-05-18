@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Models\Database;
 use Models\Todo;
+use Helpers\RedirectHelper;
 
 class AddController {
     private $todoManager;
@@ -13,7 +14,6 @@ class AddController {
     }
 
     public function index() {
-        // نمایش فرم افزودن وظیفه
         require __DIR__ . '/../resources/views/AddView.php';
     }
 
@@ -21,20 +21,14 @@ class AddController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $task = trim($_POST['task']);
             if (!empty($task)) {
-                if ($this->todoManager->addTask($task)) {
-                    header('Location: /toDoList/?success=task_added');
-                    exit();
-                } else {
-                    header('Location: /toDoList/add/?error=add_task_failed');
-                    exit();
-                }
+                if ($this->todoManager->addTask($task)) 
+                    RedirectHelper::redirect('/toDoList/?success=task_added');
+                 else 
+                    RedirectHelper::redirect('/toDoList/add/?error=add_task_failed');
             } else {
-                header('Location: /toDoList/add/?error=empty_task');
-                exit();
+                RedirectHelper::redirect('/toDoList/add/?error=empty_task');
             }
-        } else {
-            header('Location: /toDoList/');
-            exit();
-        }
+        } else 
+            RedirectHelper::redirect('/toDoList/'); 
     }
 }

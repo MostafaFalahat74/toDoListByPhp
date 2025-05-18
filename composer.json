@@ -7,7 +7,9 @@
             "Controllers\\": "controllers/",
             "Resources\\": "resources/",
             "Views\\": "resources/views/",
-            "Interfaces\\": "models/Interfaces/"
+            "Interfaces\\": "models/Interfaces/",
+             "Core\\": "core/",
+             "Helpers\\": "helpers/"
         }
     },
     "authors": [

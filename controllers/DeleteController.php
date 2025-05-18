@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Models\Database;
 use Models\Todo;
+use Helpers\RedirectHelper;
 
 class DeleteController {
     private $todoManager;
@@ -15,16 +16,12 @@ class DeleteController {
     public function destroy() {
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $id = (int)$_GET['id'];
-            if ($this->todoManager->deleteTask($id)) {
-                header('Location: /toDoList/?success=task_deleted');
-                exit();
-            } else {
-                header('Location: /toDoList/?error=delete_task_failed');
-                exit();
-            }
-        } else {
-            header('Location: /toDoList/?error=invalid_id');
-            exit();
-        }
+            if ($this->todoManager->deleteTask($id)) 
+                RedirectHelper::redirect('/toDoList/?success=task_deleted');
+             else 
+                RedirectHelper::redirect('/toDoList/?error=delete_task_failed');
+            
+        } else 
+            RedirectHelper::redirect('/toDoList/?error=invalid_id'); 
     }
 }

@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Models\Database;
 use Models\Todo;
+use Helpers\RedirectHelper;
 
 class CompleteController {
     private $todoManager;
@@ -18,7 +19,6 @@ class CompleteController {
             $completed = intval($_POST['completed']) ? 1 : 0;
             $this->todoManager->updateTaskStatus($id, $completed);
         }
-        header('Location: /toDoList/');
-        exit();
+        RedirectHelper::redirect('/toDoList/');
     }
 }
