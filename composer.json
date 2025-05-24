@@ -3,6 +3,7 @@
     "description": "discription",
     "autoload": {
         "psr-4": {
+            "servers\\": "servers/",
             "Models\\": "models/",
             "Controllers\\": "controllers/",
             "Resources\\": "resources/",
@@ -17,5 +18,10 @@
             "name": "mostafa"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "glhd/laravel-dumper": "^2.0"
+    },
+    "require": {
+        "symfony/var-dumper": "^7.2"
+    }
 }
