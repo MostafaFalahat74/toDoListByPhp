@@ -1,43 +1,15 @@
-<?php
-
-namespace resources\views;
-
-session_start(); 
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-$csrf = $_SESSION['csrf_token'];
-use Models\User;
-use Models\Database;
-use Helpers\RedirectHelper;
-require_once __DIR__ . '/../../models/User.php';
-require_once __DIR__ . '/../../models/Database.php';
-
-$database = new Database();
-$user = new User($database);
-$error = null; 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    if ($user->login($username, $password)) 
-        RedirectHelper::redirect('/toDoList/');
-    else 
-        $error = 'نام کاربری یا رمز عبور اشتباه است.'; 
-}
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
+    <meta charset="UTF-8">
     <title>ورود</title>
     <link rel="stylesheet" href="/toDoList/public/Style.css">
 </head>
 <body>
-<div class="login-container"> <h1>ورود</h1>
-    <?php if ($error): ?>
-        <p class="error-message"><?php echo $error; ?></p>
+<div class="login-container">
+    <h1>ورود</h1>
+    <?php if (!empty($error)): ?>
+        <p class="error-message"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
     <form method="post" action="/toDoList/login/">
         <div class="form-group">
@@ -48,8 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="password">رمز عبور:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <button type="submit">ورود</button>
     </form>
-</div> </body>
+</div>
+</body>
 </html>

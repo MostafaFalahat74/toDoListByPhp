@@ -8,11 +8,13 @@ require_once __DIR__ . '/../models/Interfaces/DatabaseInterface.php';
 class User implements UserInterface
 {
     private $pdo;
-    private $database; 
+    private $database;
+
     public function __construct(DatabaseInterface $database)
     {
         $this->database = $database;
-        $this->pdo = $this->database->connect(); 
+        $this->pdo = $this->database->connect();
+        session_start();
     }
 
     public function login(string $username, string $password): bool
