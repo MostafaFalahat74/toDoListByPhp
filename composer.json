@@ -9,7 +9,9 @@
             "Views\\": "resources/views/",
             "Interfaces\\": "models/Interfaces/",
              "Core\\": "core/",
-             "Helpers\\": "helpers/"
+             "Helpers\\": "helpers/",
+            "Facades\\": "facades/",
+            "Http\\Middleware\\": "Http/Middleware/"
         }
     },
     "authors": [

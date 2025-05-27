@@ -6,29 +6,27 @@ use Models\Todo;
 use Helpers\RedirectHelper;
 
 class AddController {
-    private $todoManager;
+//    private $todoManager;
 
-    public function __construct() {
-        $database = new Database();
-        $this->todoManager = new Todo($database);
-    }
+//    public function __construct() {
+//        $database = new Database();
+//        $this->todoManager = new Todo($database);
+//    }
 
     public function index() {
         require __DIR__ . '/../resources/views/AddView.php';
     }
 
     public function store() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $task = trim($_POST['task']);
             if (!empty($task)) {
-                if ($this->todoManager->addTask($task)) 
+                if ($this->todoManager->addTask($task))
                     RedirectHelper::redirect('/toDoList/?success=task_added');
-                 else 
+                 else
                     RedirectHelper::redirect('/toDoList/add/?error=add_task_failed');
             } else {
                 RedirectHelper::redirect('/toDoList/add/?error=empty_task');
             }
-        } else 
-            RedirectHelper::redirect('/toDoList/'); 
+
     }
 }

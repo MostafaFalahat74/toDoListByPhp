@@ -7,7 +7,7 @@ class Database implements DatabaseInterface
     private $host = 'localhost';
     private $dbname = 'todolists';
     private $username = 'root';
-    private $password = '';
+    private $password = 'A50289707#';
     private $charset = 'utf8mb4';
     private $pdo;
 

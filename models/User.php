@@ -23,13 +23,13 @@ class User implements UserInterface
         $stmt->execute();
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        // 2. بررسی وجود کاربر و تطابق رمز عبور
+
         if ($user && password_verify($password, $user['password'])) {
-            // ورود موفقیت‌آمیز
-            $_SESSION['user_id'] = $user['id']; // ذخیره ID کاربر در جلسه
+
+            $_SESSION['user_id'] = $user['id'];
             return true;
         } else {
-            // ورود ناموفق
+
             return false;
         }
     }
@@ -44,8 +44,8 @@ class User implements UserInterface
 
     public function logout(): void
     {
-        session_destroy(); // پاک کردن تمام داده‌های جلسه
-        unset($_SESSION['user_id']); // حذف متغیر user_id (اختیاری)
+        session_destroy();
+        unset($_SESSION['user_id']);
     }
 }
 ?>

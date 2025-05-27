@@ -2,44 +2,45 @@
 
 namespace resources\views;
 
-session_start(); 
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-$csrf = $_SESSION['csrf_token'];
-use Models\User;
-use Models\Database;
-use Helpers\RedirectHelper;
-require_once __DIR__ . '/../../models/User.php';
-require_once __DIR__ . '/../../models/Database.php';
 
-$database = new Database();
-$user = new User($database);
-$error = null; 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    if ($user->login($username, $password)) 
-        RedirectHelper::redirect('/toDoList/');
-    else 
-        $error = 'نام کاربری یا رمز عبور اشتباه است.'; 
-}
-?>
+//session_start();
+//if (empty($_SESSION['csrf_token'])) {
+//    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+//}
+//$csrf = $_SESSION['csrf_token'];
+//use Models\User;
+//use Models\Database;
+//use Helpers\RedirectHelper;
+//require_once __DIR__ . '/../../models/User.php';
+//require_once __DIR__ . '/../../models/Database.php';
+//
+//$database = new Database();
+//$user = new User($database);
+//$error = null;
+//
+//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//    $username = $_POST['username'] ?? '';
+//    $password = $_POST['password'] ?? '';
+//
+//    if ($user->login($username, $password))
+//        RedirectHelper::redirect('/toDoList/');
+//    else
+//        $error = 'نام کاربری یا رمز عبور اشتباه است.';
+//}
+//?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>ورود</title>
-    <link rel="stylesheet" href="/toDoList/public/Style.css">
+    <link rel="stylesheet" href="/public/Style.css">
 </head>
 <body>
 <div class="login-container"> <h1>ورود</h1>
     <?php if ($error): ?>
-        <p class="error-message"><?php echo $error; ?></p>
+        <p class="error-message"><?php echo $error[0]; ?></p>
     <?php endif; ?>
-    <form method="post" action="/toDoList/login/">
+    <form method="post" action="/login">
         <div class="form-group">
             <label for="username">نام کاربری:</label>
             <input type="text" id="username" name="username" required>
